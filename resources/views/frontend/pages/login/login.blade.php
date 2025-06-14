@@ -4,33 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="assets/css/login.css">
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/login.css') }}">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
     <div class="container">
         <div class="form-box login">
-            <form action="#">
+            <form action="{{ route('adminlogincheck') }}" method="POST">
+                @csrf
                 <h1>Login</h1>
                 <div class="input-box">
-                    <input type="text" placeholder="Username" required>
+                    <input type="email" name="email" placeholder="Email" class="form-control" required>
                     <i class='bx bxs-user'></i>
+                    @if($errors->has('email'))
+                        <span class="text-danger" role="alert">
+                            <strong>{{ $errors->first('email') }}</strong>
+                        </span>
+                    @endif
                 </div>
                 <div class="input-box">
-                    <input type="password" placeholder="Password" required>
+                    <input type="password" placeholder="Password" name="password" class="form-control @error('password') is-invalid @enderror" required>
                     <i class='bx bxs-lock-alt' ></i>
+                     @if($errors->has('password'))
+                        <span class="text-danger" role="alert">
+                            <strong>{{ $errors->first('password') }}</strong>
+                        </span>
+                    @endif
                 </div>
                 <div class="forgot-link">
                     <a href="#">Forgot Password?</a>
                 </div>
-                <button type="submit" class="btn">Login</button>
-                <p>or login with social platforms</p>
-                <div class="social-icons">
-                    <a href="#"><i class='bx bxl-google' ></i></a>
-                    <a href="#"><i class='bx bxl-facebook' ></i></a>
-                    <a href="#"><i class='bx bxl-github' ></i></a>
-                    <a href="#"><i class='bx bxl-linkedin' ></i></a>
-                </div>
+                <button type="submit" name="login" class="btn">Login</button>
             </form>
         </div>
 
@@ -50,13 +54,6 @@
                     <i class='bx bxs-lock-alt' ></i>
                 </div>
                 <button type="submit" class="btn">Register</button>
-                <p>or register with social platforms</p>
-                <div class="social-icons">
-                    <a href="#"><i class='bx bxl-google' ></i></a>
-                    <a href="#"><i class='bx bxl-facebook' ></i></a>
-                    <a href="#"><i class='bx bxl-github' ></i></a>
-                    <a href="#"><i class='bx bxl-linkedin' ></i></a>
-                </div>
             </form>
         </div>
 
@@ -75,6 +72,6 @@
         </div>
     </div>
 
-    <script src="assets/js/login.js"></script>
+    <script src="{{ asset('assets/frontend/js/login.js') }}"></script>
 </body>
 </html>
