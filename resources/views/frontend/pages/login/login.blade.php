@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="{{ asset('assets/frontend/css/login.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/backend/css/login.css') }}">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
@@ -13,23 +13,21 @@
             <form action="{{ route('adminlogincheck') }}" method="POST">
                 @csrf
                 <h1>Login</h1>
+
                 <div class="input-box">
-                    <input type="email" name="email" placeholder="Email" class="form-control" required>
-                    <i class='bx bxs-user'></i>
-                    @if($errors->has('email'))
-                        <span class="text-danger" role="alert">
-                            <strong>{{ $errors->first('email') }}</strong>
+                    <div>
+                    @if($errors->any())
+                        <span style="color:#FF0000;" role="alert">
+                           {{ $errors->first() }}
                         </span>
                     @endif
+                </div>
+                    <input type="email" name="email" placeholder="Email" value="{{ old('email') }}" class="form-control" required>
+                    <i class='bx bxs-user'></i>
                 </div>
                 <div class="input-box">
                     <input type="password" placeholder="Password" name="password" class="form-control @error('password') is-invalid @enderror" required>
                     <i class='bx bxs-lock-alt' ></i>
-                     @if($errors->has('password'))
-                        <span class="text-danger" role="alert">
-                            <strong>{{ $errors->first('password') }}</strong>
-                        </span>
-                    @endif
                 </div>
                 <div class="forgot-link">
                     <a href="#">Forgot Password?</a>
@@ -72,6 +70,6 @@
         </div>
     </div>
 
-    <script src="{{ asset('assets/frontend/js/login.js') }}"></script>
+    <script src="{{ asset('assets/backend/js/login.js') }}"></script>
 </body>
 </html>

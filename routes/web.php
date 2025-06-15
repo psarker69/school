@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminLoginController;
+use App\Http\Controllers\Backend\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,9 +19,13 @@ Route::prefix('site/auth/')->group(function(){
 
     Route::get('login',[AdminLoginController::class, 'loginPage'])->name('adminlogin');
     Route::post('login',[AdminLoginController::class, 'loginInfoCheck'])->name('adminlogincheck');
+    Route::get('logout',[AdminLoginController::class, 'adminLogOut'])->name('admin.logout');
 
     Route::middleware('auth')->group(function(){
-        Route::get('dashboard',[AdminLoginController::class, 'loginPage'])->name('adminlogin');
+        Route::prefix('admin/')->group(function(){
+            Route::get('dashboard',[DashboardController::class, 'dashboard'])->name('admin.dashboard');
+        });
+
     });
 
 });
