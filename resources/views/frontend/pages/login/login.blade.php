@@ -26,7 +26,7 @@
                     <i class='bx bxs-user'></i>
                 </div>
                 <div class="input-box">
-                    <input type="password" placeholder="Password" name="password" class="form-control @error('password') is-invalid @enderror" required>
+                    <input type="password" placeholder="Password" name="password" value="{{ old('password') }}" class="form-control @error('password') is-invalid @enderror" required>
                     <i class='bx bxs-lock-alt' ></i>
                 </div>
                 <div class="forgot-link">

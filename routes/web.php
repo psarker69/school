@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminLoginController;
+use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,7 @@ Route::prefix('site/auth/')->group(function(){
     Route::middleware('auth')->group(function(){
         Route::prefix('admin/')->group(function(){
             Route::get('dashboard',[DashboardController::class, 'dashboard'])->name('admin.dashboard');
+            Route::resource('profile', AdminProfileController::class);
         });
 
     });

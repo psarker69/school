@@ -19,5 +19,14 @@
     @yield('main_contents')
 
     @include('backend.layout.inc.script')
+
+    @if ($errors->any())
+        <script>
+            @foreach ($errors->all() as $error)
+                toastr.error("{{$error}}")
+            @endforeach
+        </script>
+    @endif
+    
   </body>
 </html>

@@ -7,6 +7,10 @@
 
 @section('main_contents')
 
-echo 'Hello';
+<main class="app-content">
+      <div class="row">
+        Hello
+      </div>
+</main>
 
 @endsection
