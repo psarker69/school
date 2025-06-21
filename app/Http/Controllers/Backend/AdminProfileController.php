@@ -78,6 +78,31 @@ class AdminProfileController extends Controller
         }
     }
 
+     public function updateEmail(Request $request, string $id)
+    {
+        $user = User::findOrFail($id);
+
+        $request->validate([
+            'old_email' => 'required',
+            'new_email' => 'required|unique:users,email|string|email|max:255|different:old_email'
+        ]);
+
+        if($request->old_email == $user->email) {
+
+            $user->update([
+                'email' => $request->new_email
+            ]);
+
+            toastr()->success('Password has been changed');
+            return redirect()->route('admin.logout');
+
+        } else {
+            toastr()->error('Wrong Old Password');
+            return back();
+        }
+
+    }
+
     /**
      * Remove the specified resource from storage.
      */

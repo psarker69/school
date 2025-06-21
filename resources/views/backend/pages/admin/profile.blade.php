@@ -9,7 +9,7 @@
 
 <main class="app-content">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="tile">
                 <h3 class="tile-title">{{ Auth::user()->name }}</h3>
                 <div class="tile-body">
@@ -55,7 +55,30 @@
                             <input type="password" name="password_confirmation" value="{{ old('password_confirmation') }}" class="form-control form-control-sm" required>
                         </div>
                         <div class="form-group">
-                            <input type="submit" name="change_password" class="form-control btn btn-primary btn-sm" >
+                            <input type="submit" name="change_password" value="Change Password" class="form-control btn btn-primary btn-sm" >
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="tile">
+                <h3 class="tile-title">Change Email</h3>
+                <div class="tile-body">
+                    <form action="{{ asset(route('emailUpdate', Auth::user()->id)) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <div class="form-group">
+                            <label for="">Old Email</label>
+                            <input type="email" name="old_email" value="{{ Auth::user()->email }}" class="form-control form-control-sm" required readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="">New Email</label>
+                            <input type="email" name="new_email" value="{{ old('new_email') }}" class="form-control form-control-sm" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" name="change_email" value="Change Email" class="form-control btn btn-primary btn-sm" >
                         </div>
                     </form>
 

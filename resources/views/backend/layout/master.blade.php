@@ -18,6 +18,9 @@
 
     @yield('main_contents')
 
+
+    @moda
+
     @include('backend.layout.inc.script')
 
     @if ($errors->any())
@@ -27,6 +30,6 @@
             @endforeach
         </script>
     @endif
-    
+
   </body>
 </html>
