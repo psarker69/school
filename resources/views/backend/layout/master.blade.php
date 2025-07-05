@@ -18,9 +18,6 @@
 
     @yield('main_contents')
 
-
-    @moda
-
     @include('backend.layout.inc.script')
 
     @if ($errors->any())

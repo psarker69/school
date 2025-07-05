@@ -31,7 +31,10 @@ Route::prefix('site/auth/')->group(function(){
 
             Route::prefix('site_setting')->group(function(){
                 Route::get('show', [SiteSettingController::class,'show'])->name('site.settings');
+                Route::get('ajax-call/{siteid}', [SiteSettingController::class,'siteEdit'])->name('site.edit');
             });
+
+
 
         });
 

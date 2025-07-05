@@ -14,7 +14,7 @@
                 <h3 class="tile-title">
                     <div class="row">
                         <div class="col-md-6 col-6">Information</div>
-                        <div class="col-md-6 col-6 text-right text-info" title="Edit" data-toggle="modal" data-target="#editData"><i class="fa fa-edit"></i></div>
+                        <div class="col-md-6 col-6 text-right text-info editData" title="Edit" data-toggle="modal" data-target="#editData" data-id="{{ $site->id }}"><i class="fa fa-edit"></i></div>
                     </div>
                 </h3>
                 <div class="tile-body">
@@ -50,21 +50,36 @@
                         <tr>
                             <td width="30%">Email</td>
                             <td width="70%">{{ $site->email }}</td>
+
                         </tr>
                     </table>
-
                 </div>
             </div>
         </div>
     </div>
 </main>
 
-
 @include('backend.layout.inc.modal')
 
 
-@push('fro')
+@push('backend_script')
+ <script>
+        $(document).ready(function() {
+            $('.editData').on('click', function(){
 
+                var siteId = $(this).data('id');
+                // alert(siteId);
+
+                $.ajax({
+                    url: "{{ url('/site/auth/admin/site_setting/ajax-call') }}/"+ siteId,
+                    type: "GET",
+                    success: function(data) {
+                        $("#editForm").html(data);
+                    },
+                });
+            })
+        });
+    </script>
 @endpush
 
 @endsection

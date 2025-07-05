@@ -8,3 +8,5 @@
     <!-- Page specific javascripts-->
     <script type="text/javascript" src="{{ asset('assets/backend/js') }}/plugins/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    @stack('backend_script')
